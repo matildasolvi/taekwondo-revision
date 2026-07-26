@@ -1,0 +1,2868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ITF Taekwon-Do Revision</title>
+
+<style>
+
+:root {
+    --bg: #07090d;
+    --card: #11151c;
+    --card2: #181e27;
+    --text: #f5f5f5;
+    --muted: #aab1bc;
+    --red: #d7192f;
+    --red2: #ff4356;
+    --gold: #e0b04b;
+    --green: #3fc27d;
+    --border: #2b333f;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+/* HEADER */
+
+header {
+    background:
+        linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.95)),
+        radial-gradient(circle at top, #5a1019, #07090d 70%);
+    padding: 30px 18px 25px;
+    text-align: center;
+    border-bottom: 2px solid var(--red);
+}
+
+.logo {
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+header h1 {
+    margin: 5px 0;
+    font-size: 25px;
+}
+
+header p {
+    color: var(--muted);
+    margin: 5px 0 0;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7,9,13,.97);
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+}
+
+.nav-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-scroll button {
+    flex: 0 0 auto;
+    background: var(--card);
+    color: white;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 9px 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.nav-scroll button.active {
+    background: var(--red);
+    border-color: var(--red);
+}
+
+/* MAIN */
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 18px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* HERO */
+
+.hero {
+    background:
+        linear-gradient(135deg, #171d27, #0c1016);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 18px;
+}
+
+.hero h2 {
+    margin-top: 0;
+    color: var(--gold);
+}
+
+/* SEARCH */
+
+.search {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #090c11;
+    color: white;
+    font-size: 16px;
+    margin-top: 15px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: var(--red);
+}
+
+/* GRID */
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+
+/* CARDS */
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 14px;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--gold);
+}
+
+.card h4 {
+    color: var(--red2);
+    margin-bottom: 5px;
+}
+
+.card p:last-child {
+    margin-bottom: 0;
+}
+
+/* BUTTONS */
+
+.primary-btn {
+    background: var(--red);
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: var(--red2);
+}
+
+.secondary-btn {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* KOREAN */
+
+.korean {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+.translation {
+    color: var(--muted);
+}
+
+/* TAG */
+
+.tag {
+    display: inline-block;
+    background: #242c37;
+    border-radius: 20px;
+    padding: 4px 10px;
+    margin: 3px;
+    font-size: 13px;
+}
+
+/* ACCORDION */
+
+.accordion {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.accordion-title {
+    padding: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-title:hover {
+    background: var(--card2);
+}
+
+.accordion-content {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+}
+
+.accordion.open .accordion-content {
+    display: block;
+}
+
+/* PROGRESS */
+
+.progress-box {
+    background: #090c11;
+    border-radius: 10px;
+    height: 14px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--red);
+    width: 0%;
+    transition: .3s;
+}
+
+/* CHECKLIST */
+
+.checklist label {
+    display: block;
+    padding: 11px;
+    background: var(--card2);
+    margin: 6px 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.checklist input {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+/* TABLE */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+}
+
+th {
+    color: var(--gold);
+}
+
+/* QUIZ */
+
+.quiz-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--card2);
+    color: white;
+    border: 1px solid var(--border);
+    padding: 13px;
+    margin: 8px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.quiz-option:hover {
+    border-color: var(--red);
+}
+
+.quiz-option.correct {
+    background: #174d35;
+    border-color: var(--green);
+}
+
+.quiz-option.wrong {
+    background: #641d25;
+    border-color: var(--red);
+}
+
+.answer {
+    color: var(--green);
+    font-weight: bold;
+}
+
+/* FLASHCARD */
+
+.flashcard {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        linear-gradient(135deg,#1b222d,#0d1117);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 25px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 35px 15px;
+    border-top: 1px solid var(--border);
+    margin-top: 30px;
+}
+
+.small {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .logo {
+        font-size: 32px;
+    }
+
+    header h1 {
+        font-size: 21px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .hero {
+        padding: 18px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">태권도</div>
+
+<h1>ITF TAEKWON-DO REVISION</h1>
+
+<p>
+10th Kup → 1st Kup • Black Belt Preparation
+</p>
+
+</header>
+
+
+<nav>
+
+<div class="nav-scroll">
+
+<button class="active"
+onclick="showPage('home', this)">
+Home
+</button>
+
+<button
+onclick="showPage('korean', this)">
+🇰🇷 Korean
+</button>
+
+<button
+onclick="showPage('patterns', this)">
+🥋 Patterns
+</button>
+
+<button
+onclick="showPage('theory', this)">
+🎨 Theory
+</button>
+
+<button
+onclick="showPage('history', this)">
+📜 History
+</button>
+
+<button
+onclick="showPage('techniques', this)">
+🥊 Techniques
+</button>
+
+<button
+onclick="showPage('grading', this)">
+🏆 Grading
+</button>
+
+<button
+onclick="showPage('quiz', this)">
+🧠 Quiz
+</button>
+
+<button
+onclick="showPage('flashcards', this)">
+🃏 Flashcards
+</button>
+
+</div>
+
+</nav>
+
+
+<main class="container">
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<h2>
+🥋 Your Taekwon-Do Revision Dojo
+</h2>
+
+<p>
+Your personal revision hub for ITF Taekwon-Do.
+Work through each section and prepare yourself
+for your grading.
+</p>
+
+<input
+class="search"
+id="searchBox"
+placeholder="🔎 Search your revision..."
+onkeyup="searchAll()"
+>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>🇰🇷 Korean Terminology</h3>
+
+<p>
+Learn important Korean words and commands.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('korean')">
+
+Study Korean
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🥋 Patterns</h3>
+
+<p>
+Learn pattern names, meanings and movements.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('patterns')">
+
+Study Patterns
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🎨 Theory</h3>
+
+<p>
+Revise tenets, belt meanings and principles.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('theory')">
+
+Study Theory
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>📜 History</h3>
+
+<p>
+Learn the history and development of Taekwon-Do.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('history')">
+
+Study History
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🥊 Techniques</h3>
+
+<p>
+Revise stances, blocks, strikes and kicks.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('techniques')">
+
+Study Techniques
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🏆 Grading Checklist</h3>
+
+<p>
+Track everything you need to revise.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('grading')">
+
+Open Checklist
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🧠 Quiz</h3>
+
+<p>
+Test your knowledge with theory questions.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('quiz')">
+
+Take Quiz
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🃏 Flashcards</h3>
+
+<p>
+Quick-fire revision for terminology and theory.
+</p>
+
+<button
+class="primary-btn"
+onclick="goTo('flashcards')">
+
+Start Flashcards
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h3>📈 Your Revision Progress</h3>
+
+<div class="progress-box">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+<p id="progressText">
+0% complete
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<!-- KOREAN -->
+
+<section id="korean" class="page">
+
+<div class="hero">
+
+<h2>🇰🇷 Korean Terminology</h2>
+
+<p>
+Important Korean words and commands used in Taekwon-Do.
+</p>
+
+</div>
+
+
+<div id="koreanList">
+
+
+<div class="card searchable">
+
+<div class="korean">
+Taekwon-Do
+</div>
+
+<div class="translation">
+The way of the foot and hand.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Tae
+</div>
+
+<div class="translation">
+Foot or kicking.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Kwon
+</div>
+
+<div class="translation">
+Fist or hand.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Do
+</div>
+
+<div class="translation">
+Way or art.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Charyot
+</div>
+
+<div class="translation">
+Attention.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Kyong Ye
+</div>
+
+<div class="translation">
+Bow.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Junbi
+</div>
+
+<div class="translation">
+Ready position.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Sijak
+</div>
+
+<div class="translation">
+Start.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Goman
+</div>
+
+<div class="translation">
+Stop / finish.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Baro
+</div>
+
+<div class="translation">
+Return.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Do-Jang
+</div>
+
+<div class="translation">
+Training hall.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Dobok
+</div>
+
+<div class="translation">
+Taekwon-Do uniform.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Tul
+</div>
+
+<div class="translation">
+Pattern.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Matsogi
+</div>
+
+<div class="translation">
+Sparring.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Jayoo Matsogi
+</div>
+
+<div class="translation">
+Free sparring.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Ilbo Matsogi
+</div>
+
+<div class="translation">
+One-step sparring.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Sambo Matsogi
+</div>
+
+<div class="translation">
+Three-step sparring.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Hosinsul
+</div>
+
+<div class="translation">
+Self-defence.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Kyokpa
+</div>
+
+<div class="translation">
+Breaking.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Sabum
+</div>
+
+<div class="translation">
+Instructor / master instructor.
+</div>
+
+</div>
+
+
+<div class="card searchable">
+
+<div class="korean">
+Jeja
+</div>
+
+<div class="translation">
+Student.
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- PATTERNS -->
+
+<section id="patterns" class="page">
+
+<div class="hero">
+
+<h2>🥋 Patterns — Tul</h2>
+
+<p>
+Revise the meaning and movement count of your patterns.
+Tap each pattern to open it.
+</p>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Chon-Ji
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>천지</h3>
+
+<p>
+<strong>Meaning:</strong>
+Heaven and Earth.
+</p>
+
+<p>
+Represents the creation of the world and
+the beginning of human history.
+</p>
+
+<p>
+<strong>Movements:</strong> 19
+</p>
+
+<p>
+<strong>Grade:</strong> 10th Kup / White Belt
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Dan-Gun
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>단군</h3>
+
+<p>
+Named after Dan-Gun,
+the legendary founder of Korea.
+</p>
+
+<p>
+<strong>Movements:</strong> 21
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Do-San
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>도산</h3>
+
+<p>
+Named after the Korean patriot
+Ahn Chang-Ho.
+</p>
+
+<p>
+<strong>Movements:</strong> 24
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Won-Hyo
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>원효</h3>
+
+<p>
+Named after the noted monk Won-Hyo,
+who introduced Buddhism to the Silla Dynasty.
+</p>
+
+<p>
+<strong>Movements:</strong> 28
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Yul-Gok
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>율곡</h3>
+
+<p>
+Named after the philosopher and scholar
+Yi I, nicknamed the "Confucius of Korea".
+</p>
+
+<p>
+<strong>Movements:</strong> 38
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Joong-Gun
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>중근</h3>
+
+<p>
+Named after Ahn Joong-Gun.
+</p>
+
+<p>
+<strong>Movements:</strong> 32
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Toi-Gye
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>퇴계</h3>
+
+<p>
+Named after the noted scholar Yi Hwang.
+</p>
+
+<p>
+<strong>Movements:</strong> 37
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Hwa-Rang
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>화랑</h3>
+
+<p>
+Named after the Hwa-Rang youth group
+which originated in the Silla Dynasty.
+</p>
+
+<p>
+<strong>Movements:</strong> 29
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+Choong-Moo
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<h3>충무</h3>
+
+<p>
+Named after Admiral Yi Soon-Sin.
+</p>
+
+<p>
+<strong>Movements:</strong> 30
+</p>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Pattern Revision Checklist</h3>
+
+<ul>
+
+<li>Pattern name</li>
+
+<li>Korean name</li>
+
+<li>Meaning</li>
+
+<li>Number of movements</li>
+
+<li>Person or event the pattern represents</li>
+
+<li>Pattern diagram</li>
+
+<li>Correct movement sequence</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+
+<!-- THEORY -->
+
+<section id="theory" class="page">
+
+<div class="hero">
+
+<h2>🎨 Theory & Belt Meanings</h2>
+
+</div>
+
+
+<div class="card">
+
+<h3>The Tenets of Taekwon-Do</h3>
+
+<table>
+
+<tr>
+
+<th>Tenet</th>
+
+<th>Meaning</th>
+
+</tr>
+
+<tr>
+
+<td>Courtesy</td>
+
+<td>
+Being polite, respectful and considerate.
+</td>
+
+</tr>
+
+<tr>
+
+<td>Integrity</td>
+
+<td>
+Knowing right from wrong and having
+the conscience to act correctly.
+</td>
+
+</tr>
+
+<tr>
+
+<td>Perseverance</td>
+
+<td>
+Continuing despite difficulties and setbacks.
+</td>
+
+</tr>
+
+<tr>
+
+<td>Self-Control</td>
+
+<td>
+Controlling your emotions and actions.
+</td>
+
+</tr>
+
+<tr>
+
+<td>Indomitable Spirit</td>
+
+<td>
+Having courage and determination
+that cannot easily be defeated.
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<div class="card">
+
+<h3>Belt Colours</h3>
+
+
+<h4>⚪ White Belt</h4>
+
+<p>
+<strong>Meaning:</strong>
+Innocence.
+The student has no previous knowledge of Taekwon-Do.
+</p>
+
+
+<h4>🟡 Yellow Belt</h4>
+
+<p>
+<strong>Meaning:</strong>
+Earth.
+The foundation from which the plant grows.
+</p>
+
+
+<h4>🟢 Green Belt</h4>
+
+<p>
+<strong>Meaning:</strong>
+Growth.
+The plant grows and develops.
+</p>
+
+
+<h4>🔵 Blue Belt</h4>
+
+<p>
+<strong>Meaning:</strong>
+Heaven.
+The plant grows towards the sky.
+</p>
+
+
+<h4>🔴 Red Belt</h4>
+
+<p>
+<strong>Meaning:</strong>
+Danger.
+The student develops control and warns
+opponents to stay away.
+</p>
+
+
+<h4>⚫ Black Belt</h4>
+
+<p>
+<strong>Meaning:</strong>
+Maturity and proficiency.
+It also represents the opposite of white.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>Why Practise Patterns?</h3>
+
+<ul>
+
+<li>Develop correct technique.</li>
+
+<li>Improve balance and coordination.</li>
+
+<li>Practise attacking and defensive movements.</li>
+
+<li>Develop rhythm and timing.</li>
+
+<li>Build concentration.</li>
+
+<li>Understand technique applications.</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+
+<!-- HISTORY -->
+
+<section id="history" class="page">
+
+<div class="hero">
+
+<h2>📜 Taekwon-Do History</h2>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+What does Taekwon-Do mean?
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<p>
+
+<strong>Tae</strong>
+— foot or kicking.
+
+<br><br>
+
+<strong>Kwon</strong>
+— fist or hand.
+
+<br><br>
+
+<strong>Do</strong>
+— way or art.
+
+</p>
+
+<p>
+Taekwon-Do can therefore be understood as
+"The way of the foot and hand."
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+General Choi Hong Hi
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<p>
+General Choi Hong Hi is widely recognised
+as the founder of Taekwon-Do and played
+a major role in its development and
+international spread.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+The ITF
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<p>
+The International Taekwon-Do Federation,
+known as the ITF, was founded in 1966.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+The Development of Taekwon-Do
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<p>
+Modern Taekwon-Do developed in Korea
+during the 20th century and was later
+introduced around the world.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="accordion">
+
+<div class="accordion-title">
+The Purpose of Taekwon-Do
+<span>＋</span>
+</div>
+
+<div class="accordion-content">
+
+<ul>
+
+<li>Physical fitness</li>
+
+<li>Confidence</li>
+
+<li>Discipline</li>
+
+<li>Respect</li>
+
+<li>Self-control</li>
+
+<li>Self-defence</li>
+
+<li>Mental development</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- TECHNIQUES -->
+
+<section id="techniques" class="page">
+
+<div class="hero">
+
+<h2>🥊 Techniques</h2>
+
+<p>
+Revise the main categories of Taekwon-Do techniques.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>Stances</h3>
+
+<ul>
+
+<li>Parallel stance</li>
+
+<li>Walking stance</li>
+
+<li>L stance</li>
+
+<li>Sitting stance</li>
+
+<li>Fixed stance</li>
+
+<li>Rear foot stance</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>Blocks</h3>
+
+<ul>
+
+<li>Low block</li>
+
+<li>Middle block</li>
+
+<li>High block</li>
+
+<li>Outer forearm block</li>
+
+<li>Inner forearm block</li>
+
+<li>Knife-hand block</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>Hand Techniques</h3>
+
+<ul>
+
+<li>Front punch</li>
+
+<li>Reverse punch</li>
+
+<li>Back fist strike</li>
+
+<li>Knife-hand strike</li>
+
+<li>Elbow strike</li>
+
+</ul>
+
+</div>
+
+
+<div class="card">
+
+<h3>Kicks</h3>
+
+<ul>
+
+<li>Front snap kick</li>
+
+<li>Side piercing kick</li>
+
+<li>Side thrusting kick</li>
+
+<li>Turning kick</li>
+
+<li>Back kick</li>
+
+<li>Hooking kick</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h3>Technique Checklist</h3>
+
+<div class="checklist">
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the Korean name.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the English meaning.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the correct stance.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the correct tool / body part.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the correct height.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the correct direction.
+</label>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- GRADING -->
+
+<section id="grading" class="page">
+
+<div class="hero">
+
+<h2>🏆 Black Belt Grading Checklist</h2>
+
+<p>
+Tick each box as you become confident with the topic.
+Your progress is saved automatically on this device.
+</p>
+
+</div>
+
+
+<div class="card checklist">
+
+<h3>Technical Knowledge</h3>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know all required patterns.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the meaning of each pattern.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the number of movements.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the Korean terminology.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know my stances.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know my blocks.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know my hand techniques.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know my kicks.
+</label>
+
+</div>
+
+
+<div class="card checklist">
+
+<h3>Theory</h3>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the five tenets.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the belt meanings.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know the history of Taekwon-Do.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know about General Choi Hong Hi.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know what Taekwon-Do means.
+</label>
+
+</div>
+
+
+<div class="card checklist">
+
+<h3>Personal Preparation</h3>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+My patterns are confident.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+My techniques are sharp.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+My stances are strong.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I understand my techniques.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I know my exact grading syllabus.
+</label>
+
+
+<label>
+<input type="checkbox" class="progress-check">
+I am mentally prepared.
+</label>
+
+</div>
+
+</section>
+
+
+
+<!-- QUIZ -->
+
+<section id="quiz" class="page">
+
+<div class="hero">
+
+<h2>🧠 Mock Theory Quiz</h2>
+
+<p>
+Test yourself before your grading.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3 id="question">
+Question loading...
+</h3>
+
+<div id="options"></div>
+
+<p id="quizResult"></p>
+
+<button
+class="primary-btn"
+onclick="nextQuestion()">
+
+Next Question
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>Your Score</h3>
+
+<p id="score">
+0 / 0
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- FLASHCARDS -->
+
+<section id="flashcards" class="page">
+
+<div class="hero">
+
+<h2>🃏 Flashcards</h2>
+
+<p>
+Tap the card to reveal the answer.
+</p>
+
+</div>
+
+
+<div
+class="flashcard"
+id="flashcard"
+onclick="flipCard()">
+
+Tap to start
+
+</div>
+
+
+<br>
+
+<button
+class="primary-btn"
+onclick="nextFlashcard()">
+
+Next Card
+
+</button>
+
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+<p>
+🥋 ITF Taekwon-Do Revision App
+</p>
+
+<p class="small">
+Train hard. Study hard. Never give up.
+</p>
+
+</footer>
+
+
+
+<script>
+
+
+/* PAGE NAVIGATION */
+
+
+function showPage(pageId, button) {
+
+document
+.querySelectorAll('.page')
+.forEach(page => {
+
+page.classList.remove('active');
+
+});
+
+
+document
+.getElementById(pageId)
+.classList.add('active');
+
+
+document
+.querySelectorAll('.nav-scroll button')
+.forEach(btn => {
+
+btn.classList.remove('active');
+
+});
+
+
+if(button) {
+
+button.classList.add('active');
+
+}
+
+
+window.scrollTo(0,0);
+
+}
+
+
+function goTo(pageId) {
+
+const buttons =
+document.querySelectorAll('.nav-scroll button');
+
+let targetButton = null;
+
+buttons.forEach(button => {
+
+if(
+button
+.textContent
+.toLowerCase()
+.includes(pageId)
+) {
+
+targetButton = button;
+
+}
+
+});
+
+
+showPage(pageId,targetButton);
+
+}
+
+
+
+/* ACCORDIONS */
+
+
+document
+.querySelectorAll('.accordion-title')
+.forEach(title => {
+
+title.addEventListener('click', () => {
+
+title
+.parentElement
+.classList
+.toggle('open');
+
+});
+
+});
+
+
+
+/* SEARCH */
+
+
+function searchAll() {
+
+const query =
+document
+.getElementById('searchBox')
+.value
+.toLowerCase();
+
+
+const items =
+document
+.querySelectorAll('.searchable');
+
+
+items.forEach(item => {
+
+const text =
+item
+.innerText
+.toLowerCase();
+
+
+if(text.includes(query)) {
+
+item.style.display = '';
+
+} else {
+
+item.style.display = 'none';
+
+}
+
+});
+
+}
+
+
+
+/* PROGRESS */
+
+
+const checks =
+document
+.querySelectorAll('.progress-check');
+
+
+checks.forEach((check,index) => {
+
+
+const saved =
+localStorage
+.getItem('check_' + index);
+
+
+if(saved === 'true') {
+
+check.checked = true;
+
+}
+
+
+check.addEventListener('change', () => {
+
+
+localStorage
+.setItem(
+'check_' + index,
+check.checked
+);
+
+
+updateProgress();
+
+});
+
+
+});
+
+
+function updateProgress() {
+
+
+const total =
+checks.length;
+
+
+const completed =
+[...checks]
+.filter(check => check.checked)
+.length;
+
+
+const percentage =
+total === 0
+? 0
+: Math.round(
+(completed / total) * 100
+);
+
+
+document
+.getElementById('progressBar')
+.style
+.width =
+percentage + '%';
+
+
+document
+.getElementById('progressText')
+.innerText =
+percentage +
+'% complete';
+
+
+}
+
+
+updateProgress();
+
+
+
+/* QUIZ */
+
+
+const quizQuestions = [
+
+
+{
+
+question:
+"What does 'Tae' mean in Taekwon-Do?",
+
+options:
+[
+"Hand",
+"Foot",
+"Way",
+"Spirit"
+],
+
+answer: 1
+
+},
+
+
+{
+
+question:
+"What does 'Kwon' mean?",
+
+options:
+[
+"Foot",
+"Fist or hand",
+"Way",
+"Bow"
+],
+
+answer: 1
+
+},
+
+
+{
+
+question:
+"What does 'Do' mean?",
+
+options:
+[
+"Way or art",
+"Kick",
+"Punch",
+"Training hall"
+],
+
+answer: 0
+
+},
+
+
+{
+
+question:
+"How many movements are in Chon-Ji?",
+
+options:
+[
+"19",
+"21",
+"24",
+"28"
+],
+
+answer: 0
+
+},
+
+
+{
+
+question:
+"What does the white belt represent?",
+
+options:
+[
+"Growth",
+"Earth",
+"Innocence",
+"Danger"
+],
+
+answer: 2
+
+},
+
+
+{
+
+question:
+"Which is a Taekwon-Do tenet?",
+
+options:
+[
+"Competition",
+"Courtesy",
+"Winning",
+"Strength"
+],
+
+answer: 1
+
+},
+
+
+{
+
+question:
+"What does perseverance mean?",
+
+options:
+[
+"Giving up when things get difficult",
+"Continuing despite difficulties",
+"Being aggressive",
+"Winning every fight"
+],
+
+answer: 1
+
+},
+
+
+{
+
+question:
+"What does 'Charyot' mean?",
+
+options:
+[
+"Bow",
+"Attention",
+"Ready",
+"Start"
+],
+
+answer: 1
+
+},
+
+
+{
+
+question:
+"What is a pattern called in Korean?",
+
+options:
+[
+"Tul",
+"Kyokpa",
+"Matsogi",
+"Do-Jang"
+],
+
+answer: 0
+
+},
+
+
+{
+
+question:
+"What does 'Kyong Ye' mean?",
+
+options:
+[
+"Bow",
+"Stop",
+"Start",
+"Return"
+],
+
+answer: 0
+
+}
+
+];
+
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+function loadQuestion() {
+
+
+answered = false;
+
+
+const q =
+quizQuestions[currentQuestion];
+
+
+document
+.getElementById('question')
+.innerText =
+(
+currentQuestion + 1
+) +
+'. ' +
+q.question;
+
+
+const optionsDiv =
+document
+.getElementById('options');
+
+
+optionsDiv.innerHTML = '';
+
+
+q.options
+.forEach((option,index) => {
+
+
+const button =
+document
+.createElement('button');
+
+
+button.className =
+'quiz-option';
+
+
+button.innerText =
+option;
+
+
+button.onclick = () =>
+answerQuestion(
+index,
+button
+);
+
+
+optionsDiv
+.appendChild(button);
+
+
+});
+
+
+document
+.getElementById('quizResult')
+.innerText = '';
+
+
+}
+
+
+function answerQuestion(
+index,
+button
+) {
+
+
+if(answered) return;
+
+
+answered = true;
+
+
+const q =
+quizQuestions[currentQuestion];
+
+
+const allButtons =
+document
+.querySelectorAll(
+'.quiz-option'
+);
+
+
+if(index === q.answer) {
+
+
+button
+.classList
+.add('correct');
+
+
+score++;
+
+
+document
+.getElementById(
+'quizResult'
+)
+.innerHTML =
+'<span class="answer">Correct! 🥋</span>';
+
+
+} else {
+
+
+button
+.classList
+.add('wrong');
+
+
+allButtons[q.answer]
+.classList
+.add('correct');
+
+
+document
+.getElementById(
+'quizResult'
+)
+.innerText =
+'Not quite — the correct answer is: ' +
+q.options[q.answer];
+
+
+}
+
+
+document
+.getElementById('score')
+.innerText =
+score +
+' / ' +
+(currentQuestion + 1);
+
+
+}
+
+
+function nextQuestion() {
+
+
+currentQuestion++;
+
+
+if(
+currentQuestion >=
+quizQuestions.length
+) {
+
+
+currentQuestion = 0;
+
+score = 0;
+
+
+}
+
+
+loadQuestion();
+
+
+}
+
+
+loadQuestion();
+
+
+
+/* FLASHCARDS */
+
+
+const flashcards = [
+
+
+{
+
+question:
+"What does Tae mean?",
+
+answer:
+"Foot or kicking."
+
+},
+
+
+{
+
+question:
+"What does Kwon mean?",
+
+answer:
+"Fist or hand."
+
+},
+
+
+{
+
+question:
+"What does Do mean?",
+
+answer:
+"Way or art."
+
+},
+
+
+{
+
+question:
+"What does Charyot mean?",
+
+answer:
+"Attention."
+
+},
+
+
+{
+
+question:
+"What does Kyong Ye mean?",
+
+answer:
+"Bow."
+
+},
+
+
+{
+
+question:
+"What does Junbi mean?",
+
+answer:
+"Ready position."
+
+},
+
+
+{
+
+question:
+"What does Sijak mean?",
+
+answer:
+"Start."
+
+},
+
+
+{
+
+question:
+"What does Goman mean?",
+
+answer:
+"Stop or finish."
+
+},
+
+
+{
+
+question:
+"What does Tul mean?",
+
+answer:
+"Pattern."
+
+},
+
+
+{
+
+question:
+"What does Matsogi mean?",
+
+answer:
+"Sparring."
+
+},
+
+
+{
+
+question:
+"What are the five tenets?",
+
+answer:
+"Courtesy, Integrity, Perseverance, Self-Control and Indomitable Spirit."
+
+},
+
+
+{
+
+question:
+"What does the white belt represent?",
+
+answer:
+"Innocence."
+
+},
+
+
+{
+
+question:
+"What does the yellow belt represent?",
+
+answer:
+"Earth."
+
+},
+
+
+{
+
+question:
+"What does the green belt represent?",
+
+answer:
+"Growth."
+
+},
+
+
+{
+
+question:
+"What does the blue belt represent?",
+
+answer:
+"Heaven."
+
+},
+
+
+{
+
+question:
+"What does the red belt represent?",
+
+answer:
+"Danger."
+
+},
+
+
+{
+
+question:
+"What does the black belt represent?",
+
+answer:
+"Maturity and proficiency."
+
+}
+
+];
+
+
+let flashcardIndex = 0;
+
+let showingAnswer = false;
+
+
+function flipCard() {
+
+
+const card =
+document
+.getElementById('flashcard');
+
+
+if(!showingAnswer) {
+
+
+card.innerText =
+flashcards[
+flashcardIndex
+].answer;
+
+
+showingAnswer = true;
+
+
+} else {
+
+
+card.innerText =
+flashcards[
+flashcardIndex
+].question;
+
+
+showingAnswer = false;
+
+
+}
+
+
+}
+
+
+function nextFlashcard() {
+
+
+flashcardIndex++;
+
+
+if(
+flashcardIndex >=
+flashcards.length
+) {
+
+
+flashcardIndex = 0;
+
+
+}
+
+
+showingAnswer = false;
+
+
+document
+.getElementById('flashcard')
+.innerText =
+flashcards[
+flashcardIndex
+].question;
+
+
+}
+
+
+document
+.getElementById('flashcard')
+.innerText =
+flashcards[0].question;
+
+
+</script>
+
+
+</body>
+
+</html>
